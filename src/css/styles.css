@@ -18,3 +18,14 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+.country-flag {
+  display: flex;
+  gap: 20;
+  align-items: center;
+
+}
+
+li {
+  list-style: none;
+}
