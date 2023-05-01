@@ -13,12 +13,14 @@ inputEl.addEventListener('input', debounce(onCountryFn, DEBOUNCE_DELAY));
 
 function onCountryFn(e) {
   const countryName = e.target.value.trim();
-  fetchCountries(countryName)
-    .then(flagsObj => {
-      createCountryList(flagsObj);
-    })
+  if (e.target.value) {
+    fetchCountries(countryName)
+      .then(flagsObj => {
+        createCountryList(flagsObj);
+      })
 
-    .catch(error => console.log('error >>>', error));
+      .catch(error => console.log('error >>>', error), (list.innerHTML = ''));
+  }
 }
 const list = document.querySelector('.country-list');
 const createElLi = ({ capital, population, languages, flags, name }) => `
@@ -39,7 +41,6 @@ const createDiv = ({ flags, name }) => `
     </li>    `;
 const createCountryList = array => {
   list.innerHTML = '';
-
   list.insertAdjacentHTML(
     'afterbegin',
     array.reduce((acc, element, index) => {
