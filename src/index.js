@@ -10,7 +10,6 @@ const DEBOUNCE_DELAY = 300;
 
 const inputEl = document.querySelector('input');
 inputEl.addEventListener('input', debounce(onCountryFn, DEBOUNCE_DELAY));
-
 function onCountryFn(e) {
   const countryName = e.target.value.trim();
   if (e.target.value) {
@@ -20,6 +19,8 @@ function onCountryFn(e) {
       })
 
       .catch(error => console.log('error >>>', error), (list.innerHTML = ''));
+  } else {
+    list.innerHTML = '';
   }
 }
 const list = document.querySelector('.country-list');
